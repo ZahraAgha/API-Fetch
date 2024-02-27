@@ -6,6 +6,10 @@ fetch('https://api.tvmaze.com/shows').then(res => res.json()).then(data => {
     data.forEach(item => {
         const card = document.createElement("div");
         card.classList.add("card");
+        const image = document.createElement("img");
+        image.src = item.image.medium;
+        image.alt = item.name;
+        card.appendChild(image);
 
         // Create Title
         const title = document.createElement("h3");
@@ -19,14 +23,13 @@ fetch('https://api.tvmaze.com/shows').then(res => res.json()).then(data => {
 
         // Create Genre
         const genres = document.createElement("p");
-        genres.textContent = `Genre: ${item.genres.join(', ')}`;
-        card.appendChild(genres);
+        genres.textContent = `Genre: ${item.genres}`;
+
+        const name = document.createElement("p");
+        name.textContent = `Name: ${item.name}`;
+        card.appendChild(name);
 
         //Create Image
-        const image = document.createElement("img");
-        image.src = item.image.medium;
-        image.alt = item.name;
-        card.appendChild(image);
 
         cardsContainer.appendChild(card);
     });
